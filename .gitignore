@@ -1,0 +1,7 @@
+**/target/
+**/targets/
+*/BinGlPl
+BinGlPl/
+**/buildFile/
+buildFile/
+

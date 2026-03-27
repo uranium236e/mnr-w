@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waveforge Math Window</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-orb orb-a"></div>
+    <div class="background-orb orb-b"></div>
+    <div class="background-orb orb-c"></div>
+
+    <main class="layout math-layout">
+        <section class="math-top">
+            <article class="panel hero-copy">
+                <span class="eyebrow">Second Window</span>
+                <h1>Explore sine and cosine in motion.</h1>
+                <p>
+                    Adjust amplitude, frequency, phase, and offset to watch both functions move in real time. The
+                    graph also shows live values so you can connect the formulas to the visual wave patterns.
+                </p>
+                <div class="legend">
+                    <span><i class="dot-sin"></i> Sine</span>
+                    <span><i class="dot-cos"></i> Cosine</span>
+                </div>
+                <div class="button-row">
+                    <a class="button-link button-secondary" href="index.html">Back to Image Studio</a>
+                    <button id="closeWindowButton" class="button-primary" type="button">Close Window</button>
+                </div>
+            </article>
+
+            <aside class="panel mini-stack">
+                <div class="stat-card">
+                    <p>Current view</p>
+                    <strong>-2pi to 2pi</strong>
+                    <p>The graph shows a broad span so you can compare repeated cycles clearly.</p>
+                </div>
+                <div class="stat-card">
+                    <p>Current marker</p>
+                    <strong id="markerText">x = 0.00</strong>
+                    <p>Move the marker or animate it to inspect changing values at a single point.</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <h2>Wave Controls</h2>
+                <span class="status-line">Drag the sliders to reshape both functions.</span>
+            </div>
+
+            <div class="controls-grid">
+                <div class="control-card">
+                    <div class="control-header">
+                        <label for="amplitudeRange">Amplitude</label>
+                        <span id="amplitudeValue" class="value-chip">1.00</span>
+                    </div>
+                    <input id="amplitudeRange" type="range" min="0.2" max="3" step="0.01" value="1">
+                </div>
+
+                <div class="control-card">
+                    <div class="control-header">
+                        <label for="frequencyRange">Frequency</label>
+                        <span id="frequencyValue" class="value-chip">1.00</span>
+                    </div>
+                    <input id="frequencyRange" type="range" min="0.3" max="3" step="0.01" value="1">
+                </div>
+
+                <div class="control-card">
+                    <div class="control-header">
+                        <label for="phaseRange">Phase</label>
+                        <span id="phaseValue" class="value-chip">0.00</span>
+                    </div>
+                    <input id="phaseRange" type="range" min="-3.14" max="3.14" step="0.01" value="0">
+                </div>
+
+                <div class="control-card">
+                    <div class="control-header">
+                        <label for="offsetRange">Offset</label>
+                        <span id="offsetValue" class="value-chip">0.00</span>
+                    </div>
+                    <input id="offsetRange" type="range" min="-2" max="2" step="0.01" value="0">
+                </div>
+
+                <div class="control-card">
+                    <div class="control-header">
+                        <label for="markerRange">Current x</label>
+                        <span id="currentXValue" class="value-chip">0.00</span>
+                    </div>
+                    <input id="markerRange" type="range" min="-6.283" max="6.283" step="0.01" value="0">
+                </div>
+
+                <div class="control-card">
+                    <div class="checkbox-row">
+                        <input id="animateToggle" type="checkbox">
+                        <label for="animateToggle">Animate current x marker</label>
+                    </div>
+                    <p>Useful for watching both curves evolve through one cycle.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="plot-frame">
+                <canvas id="waveCanvas" width="1100" height="460"></canvas>
+            </div>
+        </section>
+
+        <section class="formula-grid">
+            <article class="panel formula-card">
+                <p>Sine function</p>
+                <strong class="formula-line" id="sinFormula">y = 1.00 sin(1.00x + 0.00) + 0.00</strong>
+            </article>
+
+            <article class="panel formula-card">
+                <p>Cosine function</p>
+                <strong class="formula-line" id="cosFormula">y = 1.00 cos(1.00x + 0.00) + 0.00</strong>
+            </article>
+        </section>
+
+        <section class="value-grid">
+            <article class="panel value-card">
+                <p>Current x</p>
+                <strong id="currentXText">0.00</strong>
+            </article>
+
+            <article class="panel value-card">
+                <p>sin(x) value</p>
+                <strong id="sinValueText">0.0000</strong>
+            </article>
+
+            <article class="panel value-card">
+                <p>cos(x) value</p>
+                <strong id="cosValueText">1.0000</strong>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <h2>Sample Values</h2>
+                <span class="status-line">Reference points across the graph range.</span>
+            </div>
+            <table class="sample-table">
+                <thead>
+                    <tr>
+                        <th>x</th>
+                        <th>sin(x)</th>
+                        <th>cos(x)</th>
+                    </tr>
+                </thead>
+                <tbody id="sampleTableBody"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="waves.js"></script>
+</body>
+</html>
